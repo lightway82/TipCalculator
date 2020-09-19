@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TipCalculator"
+             x:Class="TipCalculator.MainPage"
+             BackgroundColor="{DynamicResource bgColor}"
+>
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="10, 20, 10, 10" />
+            <On Platform="Android, UWP" Value="10" />
+        </OnPlatform>
+    </ContentPage.Padding>
+    <ContentPage.Resources>
+        <Color x:Key="fgColor">#262626</Color>
+        <Color x:Key="bgColor">White</Color>
+        <Color x:Key="btnBgColor">Gray</Color>
+    </ContentPage.Resources>
+    
+    <Grid BackgroundColor="{DynamicResource bgColor}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        
+        <Label Grid.Row="0" Grid.Column="0" Text="Dark: " VerticalOptions="Center" BackgroundColor="{DynamicResource bgColor}" TextColor="{DynamicResource fgColor}"/>
+        <CheckBox Grid.Row="0" Grid.Column="1" IsChecked="False" CheckedChanged="CheckBox_OnCheckedChanged" BackgroundColor="{DynamicResource bgColor}" Color="{DynamicResource fgColor}"></CheckBox>
+        
+        <Label Grid.Row="1" Grid.Column="0" Text="Bill" VerticalOptions="Center" BackgroundColor="{DynamicResource bgColor}" TextColor="{DynamicResource fgColor}"/>
+        <Entry Grid.Row="1" Grid.Column="1" x:Name="billInput" Placeholder="Enter Amount " Keyboard="Numeric" BackgroundColor="{DynamicResource bgColor}" TextColor="{DynamicResource fgColor}"/>
+
+        <Label Grid.Row="2" Grid.Column="0" Text="Tips:" BackgroundColor="{DynamicResource bgColor}" TextColor="{DynamicResource fgColor}"/>
+        <StackLayout Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+            <Label x:Name="tipOutput" Text="0.00" BackgroundColor="{DynamicResource bgColor}" TextColor="{DynamicResource fgColor}" />
+            <Label Text="USD" BackgroundColor="{DynamicResource bgColor}" TextColor="{DynamicResource fgColor}" />
+        </StackLayout>
+
+        <Label Grid.Row="3" Grid.Column="0" Text="Total:" BackgroundColor="{DynamicResource bgColor}" TextColor="{DynamicResource fgColor}"/>
+        <StackLayout Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+            <Label x:Name="totalOutput" Text="0.00" BackgroundColor="{DynamicResource bgColor}" TextColor="{DynamicResource fgColor}"/>
+            <Label Text="USD" BackgroundColor="{DynamicResource bgColor}" TextColor="{DynamicResource fgColor}"/>
+        </StackLayout>
+        
+        <Label Grid.Row="4" Grid.Column="0" Text="Tip percent:" BackgroundColor="{DynamicResource bgColor}" TextColor="{DynamicResource fgColor}"/>
+        <Label Grid.Row="4" Grid.Column="1" x:Name="tipPercent" Text="15%" BackgroundColor="{DynamicResource bgColor}" TextColor="{DynamicResource fgColor}"/>
+        
+        <Slider Grid.Row="5" Grid.Column="0"  Grid.ColumnSpan="2" x:Name="tipPercentSlider" Minimum="0" Maximum="100" Value="15"
+                ValueChanged="OnTipPercentSliderOnValueChanged"
+                HorizontalOptions="Fill"
+                BackgroundColor="{DynamicResource bgColor}"
+                ThumbColor="{DynamicResource fgColor}"
+                MaximumTrackColor="Blue"
+                MinimumTrackColor="Green"
+                />
+       
+        <Button Grid.Row="6" Grid.Column="0" Text="15%" Clicked="OnNormalTip" HorizontalOptions="Fill" BackgroundColor="{DynamicResource btnBgColor}" TextColor="{DynamicResource fgColor}"/>
+        <Button Grid.Row="6" Grid.Column="1" Text="20%" Clicked="OnGenerousTip" HorizontalOptions="Fill" BackgroundColor="{DynamicResource btnBgColor}" TextColor="{DynamicResource fgColor}"/>
+        <Button Grid.Row="7" Grid.Column="0" x:Name="roundUp" Text="Round UP" HorizontalOptions="Fill" BackgroundColor="{DynamicResource btnBgColor}" TextColor="{DynamicResource fgColor}"/>
+        <Button Grid.Row="7" Grid.Column="1" x:Name="roundDown" Text="Round Down" HorizontalOptions="Fill" BackgroundColor="{DynamicResource btnBgColor}" TextColor="{DynamicResource fgColor}"/>
+    </Grid>
+
+</ContentPage>
